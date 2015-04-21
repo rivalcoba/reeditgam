@@ -1,0 +1,22 @@
+{
+  "name": "Reeditgam",
+  "version": "0.0.0",
+  "authors": [
+    "rivalcoba <ivan.rivalcoba@gmail.com>"
+  ],
+  "description": "Proyecto final de PAW",
+  "main": "index.html",
+  "keywords": [
+    "PAW",
+    "mean"
+  ],
+  "license": "MIT",
+  "homepage": "www.foo.com",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
