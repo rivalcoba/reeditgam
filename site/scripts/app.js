@@ -12,11 +12,19 @@ modulo1.config(
 	'$urlRouterProvider',
 	function($stateProvider, $urlRouterProvider){
 		// Iniciando rutina de configuracion
+		// Creando ruta /Home
 		$stateProvider.state('home',{
 			//Definiendo estado como un objeto
 			url:"/home", // Url que define el estado
 			templateUrl: "/home.html", // Plantilla base para el estado
-			controller: 'mainCtrl'
+			controller: "mainCtrl"
+		});
+		// Creando Ruta de visualizacion
+		// de Post
+		$stateProvider.state('posts',{
+			url: "/posts/{id}",
+			templateUrl: "/posts.html",
+			controller: "postsCtrl"
 		});
 		// Url por defecto
 		$urlRouterProvider.otherwise('home');
@@ -50,7 +58,8 @@ modulo1.factory('posts',[function(){
 }]);
 
 // Creando controlador	
-// dependcy injection
+// dependency injection
+// Creando controlador mainCtrl
 modulo1.controller("mainCtrl",[
 	'$scope','posts', // Inyectando factory post
 	function($scope, posts){
@@ -83,3 +92,12 @@ modulo1.controller("mainCtrl",[
 		 	post.upvotes += 1;
 		 };
 	}]);
+
+// Creando controlador postsCtrl
+modulo1.controller("postCtrl",[
+	'$scope',
+	'$stateParams',
+	'posts'],function($scope, $stateParams, posts){
+		// Cuerpo del controlador
+		
+	});

@@ -18,5 +18,9 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "sweetalert": "~0.5.0",
+    "angular-h-sweetalert": "~1.4.3"
+  }
 }
