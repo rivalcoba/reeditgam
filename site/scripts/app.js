@@ -35,7 +35,8 @@ modulo1.factory('posts',[function(){
 	// Cuerpo del factory llamado post
 	var o = {
 		posts : [
-			{	
+			{
+				id: 0,	
 				title: "post 1", upvotes: 15,
 				comments: [
 					{author: "Karina", body:"Esto esta de pelos.",
@@ -44,6 +45,7 @@ modulo1.factory('posts',[function(){
 					upvotes:0}]
 			},
 			{	
+				id: 1,
 				title: "post 2", upvotes: 4,
 				comments: [
 					{author: "Coco", body:"Esto es asombroso.",
@@ -79,6 +81,7 @@ modulo1.controller("mainCtrl",[
 		 	}
 		 	$scope.posts.push(
 		 		{
+					id: $scope.posts.length,
 		 			title: $scope.title,
 		 			link: $scope.link,
 		 		 	upvotes: 0,
@@ -109,13 +112,29 @@ modulo1.controller("postsCtrl",[
 	'$stateParams',
 	'posts',
 	function($scope, $stateParams, posts){
-		$scope.incrementUpvotes = function (comment) {
+		// Cuerpo del controlador
+		$scope.incrementUpvotes = function(comment) {
 			comment.upvotes += 1;
 		};
-		// Cuerpo del controlador
+		
+		// Agregando al controlador
+		// la funcionalidad de agregar
+		// comentarios a cada post
+		$scope.addComment = function(){
+			if($scope.body === '')
+				return;
+			$scope.post.comments.push({
+				body: $scope.body,
+				author: "admin", // todo: cambiar por usuario logeado
+				upvotes: 0
+			});
+		$scope.body = "";
+		};
+		
 		// Obteniendo el parmetro id de los
 		// parametros del estado de la ruta
 		// y pasandolo como argumetos
 		// al objeto del factory
 		$scope.post = posts.posts[$stateParams.id];
+		
 	}]);
