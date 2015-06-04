@@ -1,5 +1,5 @@
 #Ignorar estos elementos
 #Esto es un comentario
-site/bower_components
-bower_components
-./site/bower_components
+site/bower_components/
+site_p/node_modules/
+site_p/npm-debug.log
