@@ -21,7 +21,7 @@ router.get('/posts',function(req, res, next ){
       return next(err);
     }
     // Si no ocurre error
-    res.json(post);
+    res.json(posts);
   });
 });
 

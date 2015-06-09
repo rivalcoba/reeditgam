@@ -5,9 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+console.log('Inicia la carga de mongoose...\n');
 // Importando framework mongoose
 var mongoose = require('mongoose');
-console.log("Cargo mongoose");
+console.log("\nCargo mongoose con exito...");
 
 // Importar modelos
 require('./models/posts');
