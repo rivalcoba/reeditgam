@@ -74,6 +74,16 @@ router.get('/posts/:post',function(req, res, next){
   res.json(req.post);
 });
 
+// Se agrega ruta para incrementar voto
+// se usa verbo PUT
+router.put('/posts/:post/upvote',function(req, res, next){
+  // Se incrementa el voto del post pasado como
+  // id
+  req.post.upvote(function(err, post){
+    if(err){return next(err);}
+    res.json(post);
+  });  
+});
 
 /* GET home page. */
 router.get('/', function(req, res) {
