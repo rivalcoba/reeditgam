@@ -85,6 +85,30 @@ router.put('/posts/:post/upvote',function(req, res, next){
   });  
 });
 
+// Ruta para crear un comentario en un post
+router.post('/posts/:post/comments', function(req, res, next){
+  // Se crea un nuevo comentario
+  // usando el modelo de mongoose
+  // a partir del cuerpo de la peticion
+  var new_comment = new comment(req.body);
+  // Agregando a que post pertenece
+  // este nuevo comentario
+  new_comment.post = req.post;
+  // Salvando base de datos
+  new_comment.save(function(err, comentarioSalvado){
+    // Verificando errores en la operacion
+    if(err){return next(err)}
+    // Se relaciona el nuevo comentario
+    // con su respectivo post
+    req.post.comments.push(comentarioSalvado);
+    // Se salva post
+    req.post.save(function(err, postSalvado){
+      if(err){return next(err)}
+      res.json(comentarioSalvado);
+    });
+  });  
+});
+
 /* GET home page. */
 router.get('/', function(req, res) {
   res.render('index', { title: 'Rivalcoba' });
