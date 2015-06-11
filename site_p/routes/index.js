@@ -43,6 +43,37 @@ router.post('/post',function(req, res, next){
   });
 });
 
+// Creacion de parametros de ruta
+router.param('post',function(req, res, next, id){
+  // Creando Query
+  // usando modelo.findById
+  var query = post.findById(id);
+  // Ejecuta query
+  query.exec(function(err, dbPost){
+    // Si hay un error retorna e invoca
+    // al siguiente middleware
+    if(err){return next(err);}
+    // Si no se encuentra el post
+    // Se notifica el error al siguiente
+    // middleware
+    if(!dbPost){
+      return next(new Error("No se encontro post"));
+    }
+    // Si se encontro post se retorna
+    // como salida del paramert
+    req.post = dbPost;
+    // Llama al siguiente middleware
+    return next();
+  });
+});
+
+// Ruta que retorna un post en funcion
+// de su Id usa para ello
+// el parametro definido arriba
+router.get('/posts/:post',function(req, res, next){
+  res.json(req.post);
+});
+
 
 /* GET home page. */
 router.get('/', function(req, res) {
